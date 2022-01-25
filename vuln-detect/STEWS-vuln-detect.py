@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
+import json
 import ssl
 import time
 import websocket
@@ -394,6 +395,11 @@ def main():
         # Run all tests
         run_tests(args)
     print("====Full list of vulnerable URLs===")
+    with open('output.json', 'w') as f:
+        json.dump({
+            'vuln_urls': vuln_urls,
+            'vuln_reasons': vuln_reasons
+        }, f, indent=2)
     print(vuln_urls)
     print(vuln_reasons)
 
